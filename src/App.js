@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {BrowserRouter, Route, Link, Redirect, Switch} from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 
 import TopPage from "./components/TopPage/TopPage";
 import PostPage from "./components/PostPage/PostPage";
@@ -11,25 +11,21 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className="app">
           <header className="App App-header">
-            <h1 className="App-title">コレウレ</h1>
+            <Link className="nav-link" to={"/TopPage"}>
+              <h1 className="App-title">コレウレ</h1>
+            </Link>
           </header>
-
-          <Link className="nav-link" to={"/TopPage"}>
-            TopPageへ
-          </Link>
-          <Link className="nav-link" to={"/AuctionPage"}>
-            AuctionPageへ
-          </Link>
-          <Link className="nav-link" to={"/PostPage"}>
-            PostPageへ
-          </Link>
           <Switch>
-            <Route exact path="/TopPage" component={TopPage}/>
-            <Route path="/AuctionPage/:AuctionId" component={AuctionPage}/>
-            <Route exact path="/PostPage" component={PostPage}/>
-            <Redirect to="/TopPage"/>
+            <Route exact path="/TopPage" component={TopPage} />
+            <Route
+              path="/AuctionPage/:userID/:productID"
+              component={AuctionPage}
+            />
+            <Route path="/PostPage" component={PostPage} />
+            />
+            <Redirect to="/TopPage" />
           </Switch>
         </div>
       </BrowserRouter>
