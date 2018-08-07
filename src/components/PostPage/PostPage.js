@@ -10,10 +10,10 @@ export default class PostPage extends Component {
       userName: ""
     };
   }
-  handleChange = event => {
+  handleChangeText = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-  handleSubmit = event => {
+  handleSubmitButton = event => {
     alert(
       this.state.productName +
         "/" +
@@ -31,24 +31,26 @@ export default class PostPage extends Component {
     console.log(isBuy);
     return (
       <div>
-        <h1>{isBuy}物を出品する</h1>
+        <h1>this is PostPage</h1>
+        <h3>{isBuy}物を出品しましょう</h3>
         <p>必要情報を入力して</p>
-
-        <p>商品名</p>
-        <input type="text" name="productName" onChange={this.handleChange} />
-        <p>説明</p>
-        <textarea
-          name="description"
-          rows="10"
-          cols="60"
-          onChange={this.handleChange}
-        />
-        <p>価格</p>
-        <input type="text" name="price" onChange={this.handleChange} />
-        <p>ユーザー名</p>
-        <input type="text" name="userName" onChange={this.handleChange} />
-		<p/>
-        <button onClick={this.handleSubmit}>send</button>
+        <form>
+          <p>商品名</p>
+          <input type="text" name="productName" onChange={this.handleChangeText} />
+          <p>説明</p>
+          <textarea
+            name="description"
+            rows="10"
+            cols="60"
+            onChange={this.handleChangeText}
+          />
+          <p>価格</p>
+          <input type="text" name="price" onChange={this.handleChangeText} />
+          <p>ユーザー名</p>
+          <input type="text" name="userName" onChange={this.handleChangeText} />
+          <p />
+          <button onClick={this.handleSubmitButton}>send</button>
+        </form>
       </div>
     );
   }

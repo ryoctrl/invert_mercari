@@ -6,12 +6,20 @@ a {
   color: inherit;
 }
 
+.body{
+
+  width: 80vw;
+  margin: auto;
+
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
 .App-header {
+  text-align: center;
   background-color: #222;
   height: 50px;
   padding: 20px;

@@ -17,16 +17,18 @@ class App extends Component {
               <h1 className="App-title">コレウレ</h1>
             </Link>
           </header>
-          <Switch>
-            <Route exact path="/TopPage" component={TopPage} />
-            <Route
-              path="/AuctionPage/:userID/:productID"
-              component={AuctionPage}
-            />
-            <Route path="/PostPage" component={PostPage} />
-            />
-            <Redirect to="/TopPage" />
-          </Switch>
+          <div className="body">
+            <Switch>
+              <Route exact path="/TopPage" component={TopPage} />
+              <Route
+                path="/AuctionPage/:userID/:productID"
+                component={AuctionPage}
+              />
+              <Route path="/PostPage" component={PostPage} />
+              />
+              <Redirect to="/TopPage" />
+            </Switch>
+          </div>
         </div>
       </BrowserRouter>
     );
