@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import { Link } from "react-router-dom";
+import superagent from "superagent";
 
 export default class TopPage extends Component {
   constructor(props) {
@@ -15,38 +16,52 @@ export default class TopPage extends Component {
   }
 
   getJsonData() {
-    fetch(`https://jsondata.okiba.me/v1/json/Ve0fg180806072454`)
-      .then(response => response.json())
-      .then(responseJson => this.setState({ data: responseJson }))
-      .catch(e => e);
-  }
+    superagent
+      .get("https://reversemercari.mosin.jp/products")
+      .query({})
+      .end((err, res) => {
+        if (err) {
+          alert(res.text);
+        }
+        const jsonData = JSON.parse(res.text);
+        this.setState({
+          data: jsonData.products
+        });
+      });
+  } 
 
   render() {
     const data = this.state.data;
 
     return (
       <div className="TopPage">
-        <h1>this is TopPage</h1>
+        <h1> this is TopPage </h1>{" "}
         <Link
           className="nav-link"
-          to={{ pathname: "/PostPage", state: { isBuy:"買いたい" } }}
+          to={{
+            pathname: "/PostPage",
+            state: {
+              isBuy: "買いたい",
+            }
+          }}
         >
-          買いたいものを出す。
-        </Link>
+          買いたいものを出す。{" "}
+        </Link>{" "}
         <div>
+          {" "}
           {data.map((data, index) => {
             return (
               <ItemCard
-                productName={data.productName}
-                userName={data.userName}
+                productName={data.title}
+                userName="null"
                 description={data.description}
                 price={data.price}
                 showImage={true}
-                key={index}
+                key={data.productId}
               />
             );
-          })}
-        </div>
+          })}{" "}
+        </div>{" "}
       </div>
     );
   }
